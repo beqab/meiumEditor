@@ -1,0 +1,43 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.App {
+  font-family: sans-serif;
+  text-align: center;
+  display: block;
+}
+/* Override default */
+.Draftail-Toolbar {
+  background: transparent !important;
+  border: none !important;
+}
+/* Override default */
+.Draftail-Editor {
+  border: none !important;
+  width: 60% !important;
+  margin-top: 100px !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+/* Override default */
+.public-DraftEditor-content {
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+}
+/* Override default */
+.public-DraftEditorPlaceholder-inner {
+  font-family: Georgia, "Times New Roman", Times, serif !important;
+}
