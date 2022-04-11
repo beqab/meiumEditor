@@ -9,14 +9,17 @@ import {
 } from "@draft-js-plugins/buttons";
 
 import createVideoPlugin from "@draft-js-plugins/video";
+import createImagePlugin from "@draft-js-plugins/image";
 
 import createSideToolbarPlugin from "@draft-js-plugins/side-toolbar";
 import editorStyles from "./style/editorStyles.module.scss";
 import buttonStyles from "./style/buttonStyles.module.scss";
 import toolbarStyles from "./style/toolbarStyles.module.scss";
 import blockTypeSelectStyles from "./style/blockTypeSelectStyles.module.scss";
+// import ImageAdd from './ImageAdd';
 
 import VideoAdd from "./plugins/video";
+import ImageAdd from "./plugins/image";
 
 // Setting the side Toolbar at right position(default is left) and styling with custom theme
 const sideToolbarPlugin = createSideToolbarPlugin({
@@ -25,7 +28,9 @@ const sideToolbarPlugin = createSideToolbarPlugin({
 });
 const videoPlugin = createVideoPlugin();
 const { SideToolbar } = sideToolbarPlugin;
-const plugins = [sideToolbarPlugin, videoPlugin];
+
+const imagePlugin = createImagePlugin();
+const plugins = [sideToolbarPlugin, videoPlugin, imagePlugin];
 const text =
   "Once you click into the text field the sidebar plugin will show up …";
 
@@ -33,6 +38,7 @@ export default class CustomSideToolbarEditor extends Component {
   state = {
     editorState: createEditorStateWithText(text),
     openVideo: false,
+    openImage: false,
   };
 
   onChange = (editorState) => {
@@ -85,6 +91,16 @@ export default class CustomSideToolbarEditor extends Component {
                   >
                     <img width={30} src="/img/merge.png" />
                   </div>
+                  <div
+                    style={{ cursor: "pointer" }}
+                    onClick={() => {
+                      this.setState({
+                        openImage: true,
+                      });
+                    }}
+                  >
+                    <img width={30} src="/img/photo.png" />
+                  </div>
                 </div>
               )
             }
@@ -100,6 +116,19 @@ export default class CustomSideToolbarEditor extends Component {
             editorState={this.state.editorState}
             onChange={this.onChange}
             modifier={videoPlugin.addVideo}
+          />
+        ) : null}
+
+        {this.state.openImage ? (
+          <ImageAdd
+            close={() => {
+              this.setState({
+                openImage: false,
+              });
+            }}
+            editorState={this.state.editorState}
+            onChange={this.onChange}
+            modifier={imagePlugin.addImage}
           />
         ) : null}
       </>
